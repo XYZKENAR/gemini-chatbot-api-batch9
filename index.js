@@ -36,7 +36,7 @@ app.post('/api/chat', async (req, res) => {
             contents,
             config: {
                 temperature: 1.2,
-                systemInstruction: 'Anda adalah asisten travelling, tanyakan pengguna ingin liburan kemana dan berapa lama, lalu buatkan itinerarynya. Jawab dengan nada ramah dan santai',
+                 systemInstruction: 'Anda adalah pakar AI yang cerdas dan ramah. Tugas Anda adalah membantu pengguna memahami kecerdasan buatan (AI), teknologi terbaru, dan cara menggunakannya. Gunakan bahasa yang mudah dipahami, analogi yang relevan, dan tetap santai dalam menjawab.',
             },
         });
         res.status(200).json({ result: response.text });
