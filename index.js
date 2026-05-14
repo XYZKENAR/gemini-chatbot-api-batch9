@@ -18,8 +18,10 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-const PORT = 3000;
-app.listen(PORT, () => console.log(`Server ready on http://localhost:${PORT}`));
+const port = process.env.PORT || 7860;
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server is running on port ${port}`);
+});
 
 app.post('/api/chat', async (req, res) => {
     const { conversation } = req.body;
@@ -36,7 +38,7 @@ app.post('/api/chat', async (req, res) => {
             contents,
             config: {
                 temperature: 1.2,
-                 systemInstruction: 'Anda adalah pakar AI yang cerdas dan ramah. Tugas Anda adalah membantu pengguna memahami kecerdasan buatan (AI), teknologi terbaru, dan cara menggunakannya. Gunakan bahasa yang mudah dipahami, analogi yang relevan, dan tetap santai dalam menjawab.',
+                 systemInstruction: 'Anda adalah pakar AI yang cerdas dan ramah. Tugas Anda adalah membantu pengguna memahami pertanyaan pengguna, membuat pilihan, dan dan jawaban yang akurat. Gunakan bahasa yang mudah dipahami, analogi yang relevan, dan tetap santai dalam menjawab.',
             },
         });
         res.status(200).json({ result: response.text });
